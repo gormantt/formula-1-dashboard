@@ -21,12 +21,12 @@ st.markdown("""
  ## Welcome to the All DS no BS Dashboard: Where Data Meets the Fast Lane!
 
 Rev up your engines, fellow racing enthusiasts, because you're about to embark on a data-driven journey through the thrilling world of Formula 1! Whether you're a seasoned armchair strategist, a data-savvy race engineer, or just a fan of the roaring engines and screeching tires, our dashboard is here to put you in pole position.
-Imagine being able to analyze Formula 1 race results like never before. With TurboTrack, you're not just a spectator – you're a data maestro. Whether you're reliving the exhilarating moments of a historic race or digging into , our dashboard empowers you to bring your own data to the track.
+Imagine being able to analyze Formula 1 race results like never before. With this dashboard, you're not just a spectator – you're behind the wheel because our dashboard empowers you to bring your own data to the track.
 But what's the secret sauce that makes our dashboard stand out? It's the fusion of cutting-edge technology and the magic of large language models. Our AI-powered pit crew works tirelessly behind the scenes to churn your raw data into elegant, insightful visualizations. From hairpin turns to straight-line speed, every nuance of the race is captured in plots that'll have you on the edge of your seat.
 
 Don't worry if you're new to the dashboard game – we've fine-tuned the user experience to be as smooth as a pit stop. Upload your own race data, tweak variables, and watch the magic unfold. It's like having the power of a supercomputer at your fingertips, but without the pit crew uniforms.
 
-So, gear up, data explorers! Whether you're hunting for performance patterns, uncovering hidden rivalries, or simply indulging in the sheer excitement of Formula 1, TurboTrack is your pit stop for all things analytical and adrenaline-fueled. Buckle up, because the race to uncover insights is about to begin!""")
+So, gear up, data explorers! Whether you're hunting for performance patterns, uncovering hidden rivalries, or simply indulging in the sheer excitement of Formula 1, our dashboard is your pit stop for all things analytical and adrenaline-fueled. Buckle up, because the race to uncover insights is about to begin!""")
 st.markdown(
     """
     <style>
@@ -78,7 +78,7 @@ csv_file = st.file_uploader("Step2: Upload csv file", type={"csv"})
 if api_key and csv_file:
     os.environ["OPENAI_API_KEY"] = api_key
 
-    df = pd.read_csv(csv_file)
+    df = pd.read_csv(csv_file, low_memory = False)
 
     st.write(df.head())
 
@@ -96,6 +96,7 @@ if api_key and csv_file:
             st.session_state["chart_format"],
             verbose=True,
             description_strategy="head",
+            language = "English"
         )
 
     def reset_history():
